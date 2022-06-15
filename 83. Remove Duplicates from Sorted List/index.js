@@ -30,18 +30,13 @@ const listReader = (root) => {
 };
 
 const removeDuplicates = (root) => {
+	if (!root) return null;
 	let current = root;
-	let concat = root;
-	while (current !== null) {
-		if (current?.val !== current?.next?.val) {
-			current = current.next;
-			concat.next = current;
-			concat = current;
-		} else {
-			current = current.next;
-		}
-	}
+	while (current && current.next)
+		current.val === current.next.val
+			? (current.next = current.next.next)
+			: (current = current.next);
+	return root;
 };
 removeDuplicates(nodeA);
 listReader(nodeA);
-module.exports = {};
