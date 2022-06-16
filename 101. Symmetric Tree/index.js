@@ -24,10 +24,10 @@ class Node {
 
 const nodeA = new Node(1);
 const nodeB = new Node(2);
-// const nodeC = new Node(2);
-// const nodeD = new Node(2);
-// const nodeE = new Node(2);
-// const nodeF = new Node(2);
+const nodeC = new Node(2);
+const nodeD = new Node(2);
+const nodeE = new Node(2);
+const nodeF = new Node(2);
 // const nodeG = new Node(3);
 
 nodeA.left = nodeB;
@@ -50,8 +50,6 @@ const reader = (branchA, branchB) => {
 		const currentA = queueA.pop();
 		const currentB = queueB.pop();
 		if (currentA.val !== currentB.val) return false;
-		console.log(currentA.val, currentB.val);
-
 		if (currentA.left && currentB.right) {
 			if (currentA.left) queueA.unshift(currentA.left);
 			if (currentB.right) queueB.unshift(currentB.right);
@@ -67,4 +65,21 @@ const reader = (branchA, branchB) => {
 	return true;
 };
 
-console.log(reader(nodeB, nodeC));
+// Recursive solution
+
+const isSymmetric = (root) => {
+	if (root == null) return true;
+	return compareBranches(root.left, root.right);
+};
+
+const compareBranches = (branchA, branchB) => {
+	if (branchA == null && branchB == null) return true;
+	if (branchA == null || branchB == null || branchA.val != branchB.val)
+		return false;
+	return (
+		compareBranches(branchA.left, branchB.right) &&
+		compareBranches(branchA.right, branchB.left)
+	);
+};
+
+console.log(isSymmetric(nodeA));
