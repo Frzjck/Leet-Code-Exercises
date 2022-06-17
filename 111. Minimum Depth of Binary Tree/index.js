@@ -27,8 +27,14 @@ nodeB.right = nodeE;
 nodeC.left = nodeF;
 nodeC.right = nodeG;
 
-const minDepth = (root) => {
+var minDepth = function (root) {
+	return root ? minDepthExplorer(root) : 0;
+};
+
+const minDepthExplorer = (root) => {
 	if (root === null) return Infinity;
 	if (root.left === null && root.right === null) return 1;
-	return Math.min(minDepth(root.left), minDepth(root.right)) + 1;
+	return (
+		Math.min(minDepthExplorer(root.left), minDepthExplorer(root.right)) + 1
+	);
 };
