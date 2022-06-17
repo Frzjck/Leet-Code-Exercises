@@ -25,6 +25,7 @@ nodeB.left = nodeD;
 nodeB.right = nodeE;
 nodeC.left = nodeF;
 nodeC.right = nodeG;
+
 const isBalanced = (root) => {
 	return reader(root) === false ? false : true;
 };
