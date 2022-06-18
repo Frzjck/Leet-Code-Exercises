@@ -6,10 +6,25 @@
 
 const maxProfit = (prices) => {
 	let mostProfit = -Infinity;
+	let bestBuy = Infinity;
+	let bestSell = -Infinity;
+	let isSelling = false;
+
 	for (let i = 0; i < prices.length; i++) {
-		for (let j = i + 1; j < prices.length; j++) {
-			mostProfit = Math.max(mostProfit, prices[j] - prices[i]);
+		if (!isSelling && prices[i] < bestBuy) {
+			bestBuy = prices[i];
+			mostProfit = comparePrices(i, mostProfit);
+		} else if (isSelling && prices[i] > bestSell) {
+			bestSell = prices[i];
+			mostProfit = comparePrices(i, mostProfit);
 		}
 	}
 	return mostProfit > 0 ? mostProfit : 0;
+};
+
+const comparePrices = (i, mostProfit) => {
+	for (let j = i + 1; j < prices.length; j++) {
+		mostProfit = Math.max(mostProfit, prices[j] - prices[i]);
+	}
+	return mostProfit;
 };
