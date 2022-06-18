@@ -8,8 +8,7 @@ const maxProfit = (prices) => {
 	let mostProfit = -Infinity;
 	let bestBuyPriceSoFar = Infinity;
 	for (let i = 0; i < prices.length; i++) {
-		bestBuyPriceSoFar =
-			bestBuyPriceSoFar > prices[i] ? prices[i] : bestBuyPriceSoFar;
+		bestBuyPriceSoFar = Math.min(bestBuyPriceSoFar, prices[i]);
 		mostProfit = Math.max(mostProfit, prices[i] - bestBuyPriceSoFar);
 	}
 	return mostProfit > 0 ? mostProfit : 0;
