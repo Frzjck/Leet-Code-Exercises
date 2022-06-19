@@ -36,8 +36,10 @@ export const treeReader = (root) => {
 export const arrayToTree = (arr) => {
 	const nodeArr = arr.map((elem) => new TreeNode(elem));
 	for (let i = 0; i < nodeArr.length; i++) {
-		nodeArr[i].left = nodeArr[i * 2 + 1] || null;
-		nodeArr[i].right = nodeArr[i * 2 + 2] || null;
+		if (nodeArr[i]) {
+			nodeArr[i].left = nodeArr[i * 2 + 1] || null;
+			nodeArr[i].right = nodeArr[i * 2 + 2] || null;
+		}
 	}
 	return nodeArr[0];
 };
